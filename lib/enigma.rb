@@ -9,6 +9,8 @@ class Enigma
     @date_info = Time.now
   end
 
+
+  # key_class
   def random_five_digit_number
     rand.to_s[2..6].to_i
   end
@@ -44,13 +46,13 @@ class Enigma
     digits
   end
 
-  def offset(date)
+  def offset(date_info)
     offset_assignments(date).reduce({}) do |acc, assignment|
       #######
     end
   end
 
-  def key_assignment(date_info)
+  def key_assignments
     digits = @char_list.to_s.split('')
   end
 

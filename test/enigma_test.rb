@@ -42,7 +42,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_tell_us_offset_for_offset
-    # skip
+    skip
     date = "012345"
     expected = {
       :a => 9,
@@ -55,19 +55,25 @@ class EnigmaTest < Minitest::Test
 
 
 # key class
-  def test_it_can_tell_us_each_key_value_fer_key
+  def test_it_can_generate_random_five_digit_number
+    assert_instance_of Integer, @enigma.random_five_digit_number
+  end
+
+  def test_it_can_tell_us_each_key_value_for_key
     skip
-    assert_equal [9, 0, 2, 5], @enigma.offset_assignment("012345")
+
+    assert_equal [], @enigma.key_assignments
   end
 
   def test_it_can_tell_us_key_for_key
     skip
     # need stub for this one
+    date = "012345"
     expected = {
-      :a_key => Integer,
-      :b_key => Integer,
-      :c_key => Integer,
-      :d_key => Integer
+      :a => 01,
+      :b => 12,
+      :c => 23,
+      :d => Integer
     }
     assert_equal expected, @enigma.key
   end
