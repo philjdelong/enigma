@@ -5,4 +5,8 @@ class Enigma
     @char_list = ("a".."z").to_a << " "
     @char_key = ("a".."d").to_a << " "
   end
+
+  def total_shift(keys, offsets)
+    #####
+  end
 end

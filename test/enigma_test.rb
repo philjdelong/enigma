@@ -4,8 +4,8 @@ class EnigmaTest < Minitest::Test
 
   def setup
     @enigma = Enigma.new
-    @key = Key.new
-    @offset = Offset.new
+    @keys_shift = Keys.new
+    @offsets_shift = Offsets.new
   end
 
   def test_it_exists
@@ -16,6 +16,16 @@ class EnigmaTest < Minitest::Test
     assert_equal 27, @enigma.char_list.count
     assert_equal 5, @enigma.char_key.count
   end
+
+  def test_it_can_calculate_total_shift_for_keys_and_offsets
+    expected = []
+    assert_equal expected, @enigma.total_shift(@keys, @offsets)
+  end
+
+
+
+
+
 
   # enigma_class == ENCRYPT/ DECRYPT
   def test_it_can_encrypt_a_message_with_set_key_and_date

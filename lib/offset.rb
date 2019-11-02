@@ -1,6 +1,6 @@
 require 'date'
 
-class Offset
+class Offsets
 
   def initialize
     @date_info = Time.now
@@ -21,7 +21,7 @@ class Offset
     date_squared % 10000
   end
 
-  def offset_assignments
+  def offsets_assignments
     digits = last_four.to_s.split('')
     digits = digits.map do |digit|
       digit.to_i
@@ -29,12 +29,12 @@ class Offset
     digits
   end
 
-  def offset_shifts
+  def offsets_shifts
     offset_info = {
-      a: offset_assignments[0],
-      b: offset_assignments[1],
-      c: offset_assignments[2],
-      d: offset_assignments[3]
+      a: offsets_assignments[0],
+      b: offsets_assignments[1],
+      c: offsets_assignments[2],
+      d: offsets_assignments[3]
     }
   end
 end
