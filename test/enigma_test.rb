@@ -42,14 +42,15 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_tell_us_offset_for_offset
-    skip
+    # skip
+    date = "012345"
     expected = {
       :a => 9,
       :b => 0,
       :c => 2,
       :d => 5
     }
-    assert_equal expected, @enigma.offset("012345")
+    assert_equal expected, @enigma.offset(date)
   end
 
 

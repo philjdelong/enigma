@@ -36,7 +36,7 @@ class Enigma
     date_squared(date_info) % 10000
   end
 
-  def offset_assignment(date_info)
+  def offset_assignments(date_info)
     digits = last_four(date_info).to_s.split('')
     digits = digits.map do |digit|
       digit.to_i
@@ -44,8 +44,10 @@ class Enigma
     digits
   end
 
-  def offset
-    offset_assignments.reduce({}) do |acc, assignment|
+  def offset(date)
+    offset_assignments(date).reduce({}) do |acc, assignment|
+      #######
+    end
   end
 
   def key_assignment(date_info)
