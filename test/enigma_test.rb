@@ -18,7 +18,7 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Integer, @enigma.random_five_digit_number
   end
 
-  def test_it_can_provide_date_in_DDMMYY_format
+  def test_it_can_provide_selected_date_in_DDMMYY_format
     assert_equal "012345", @enigma.selected_date(01,23,2045)
   end
 
@@ -27,16 +27,18 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_take_last_four_digits
-    skip
-    assert_equal 9025, @enigma.last_four(date_squared("012345"))
+    # skip
+    assert_equal 9025, @enigma.last_four("012345")
   end
 
 
 
 
 
-
-
+  def test_it_can_provide_todays_date_in_DDMMYY_format
+    skip
+    assert_equal "110219", @enigma.todays_date
+  end
 
   def test_it_can_encrypt_a_message_with_set_key_and_date
     skip
