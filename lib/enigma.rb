@@ -19,7 +19,7 @@ class Enigma
     day+month+year
   end
 
-  def selected_date(day, month, year)
+  def selected_date(day = 01, month = 23, year =45)
     day = day.to_s.rjust(2, "0")
     month = month.to_s.rjust(2, "0")
     year = year.to_s.delete("20")
