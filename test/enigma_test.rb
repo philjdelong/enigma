@@ -12,33 +12,71 @@ class EnigmaTest < Minitest::Test
 
   def test_it_initializes_with_char_list_and_key
     assert_equal 27, @enigma.char_list.count
+    assert_equal 5, @enigma.char_key.count
   end
 
-  def test_it_can_generate_random_five_digit_number
-    assert_instance_of Integer, @enigma.random_five_digit_number
-  end
 
-  def test_it_can_provide_selected_date_in_DDMMYY_format
+# for offset
+  def test_it_can_provide_selected_date_in_DDMMYY_format_for_offset
     assert_equal "012345", @enigma.selected_date(01,23,2045)
   end
 
-  def test_it_can_square_the_date
-    assert_equal 152399025, @enigma.date_squared("012345")
-  end
-
-  def test_it_can_take_last_four_digits
+  def test_it_can_provide_todays_date_in_DDMMYY_format_for_offset
     # skip
-    assert_equal 9025, @enigma.last_four("012345")
+    assert_equal "021119", @enigma.todays_date
   end
 
+  def test_it_can_square_the_date_for_offset
+    date = "012345"
+    assert_equal 152399025, @enigma.date_squared(date)
+  end
 
+  def test_it_can_take_last_four_digits_for_offset
+    date = "012345"
+    assert_equal 9025, @enigma.last_four(date)
+  end
 
+  def test_it_can_tell_us_each_offset_value_for_offset
+    date = "012345"
+    assert_equal [9, 0, 2, 5], @enigma.offset_assignments(date)
+  end
 
-
-  def test_it_can_provide_todays_date_in_DDMMYY_format
+  def test_it_can_tell_us_offset_for_offset
     skip
-    assert_equal "110219", @enigma.todays_date
+    expected = {
+      :a => 9,
+      :b => 0,
+      :c => 2,
+      :d => 5
+    }
+    assert_equal expected, @enigma.offset("012345")
   end
+
+
+# key class
+  def test_it_can_tell_us_each_key_value_fer_key
+    skip
+    assert_equal [9, 0, 2, 5], @enigma.offset_assignment("012345")
+  end
+
+  def test_it_can_tell_us_key_for_key
+    skip
+    # need stub for this one
+    expected = {
+      :a_key => Integer,
+      :b_key => Integer,
+      :c_key => Integer,
+      :d_key => Integer
+    }
+    assert_equal expected, @enigma.key
+  end
+
+
+
+
+
+
+
 
   def test_it_can_encrypt_a_message_with_set_key_and_date
     skip
