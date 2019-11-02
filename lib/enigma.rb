@@ -47,9 +47,12 @@ class Enigma
   end
 
   def offset(date_info)
-    offset_assignments(date).reduce({}) do |acc, assignment|
-      #######
-    end
+    offset_info = {
+      a: offset_assignments(date_info)[0],
+      b: offset_assignments(date_info)[1],
+      c: offset_assignments(date_info)[2],
+      d: offset_assignments(date_info)[3]
+    }
   end
 
   def key_assignments

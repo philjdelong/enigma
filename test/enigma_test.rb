@@ -27,30 +27,30 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_square_the_date_for_offset
-    date = "012345"
-    assert_equal 152399025, @enigma.date_squared(date)
+    date_info = "012345"
+    assert_equal 152399025, @enigma.date_squared(date_info)
   end
 
   def test_it_can_take_last_four_digits_for_offset
-    date = "012345"
-    assert_equal 9025, @enigma.last_four(date)
+    date_info = "012345"
+    assert_equal 9025, @enigma.last_four(date_info)
   end
 
   def test_it_can_tell_us_each_offset_value_for_offset
-    date = "012345"
-    assert_equal [9, 0, 2, 5], @enigma.offset_assignments(date)
+    date_info = "012345"
+    assert_equal [9, 0, 2, 5], @enigma.offset_assignments(date_info)
   end
 
   def test_it_can_tell_us_offset_for_offset
-    skip
-    date = "012345"
+    # skip
+    date_info = "012345"
     expected = {
       :a => 9,
       :b => 0,
       :c => 2,
       :d => 5
     }
-    assert_equal expected, @enigma.offset(date)
+    assert_equal expected, @enigma.offset(date_info)
   end
 
 
