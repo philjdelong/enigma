@@ -10,6 +10,18 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, @enigma
   end
 
+  def test_it_initializes_with_char_list_and_key
+    assert_equal 27, @enigma.char_list.count
+  end
+
+  def test_it_can_generate_random_five_digit_number
+    assert_instance_of Integer, @enigma.random_five_digit_number
+  end
+
+  def test_it_can_provide_date_in_DDMMYY_format
+    assert_equal "012345", @enigma.date(01,23,2045)
+  end
+
   def test_it_can_encrypt_a_message_with_set_key_and_date
     skip
     encrypted = {
