@@ -6,7 +6,7 @@ class Enigma
   def initialize
     @char_list = ("a".."z").to_a << " "
     @char_key = ("a".."d").to_a << " "
-    @date_info = Time.now
+    @date_info = Time.now ## needs to go in offset_class
   end
 
 
@@ -62,16 +62,16 @@ class Enigma
   def key_assignments
     digits = random_five_digit_number.to_s.split('')
     digits.map do |digit|
-      digit.to_i
+      digit
     end
   end
 
   def key_shifts
     key_info = {
-      a: key_assignments[0],
-      b: key_assignments[1],
-      c: key_assignments[2],
-      d: key_assignments[3]
+      a: (key_assignments[0] + key_assignments[1]).to_i,
+      b: (key_assignments[1] + key_assignments[2]).to_i,
+      c: (key_assignments[2] + key_assignments[3]).to_i,
+      d: (key_assignments[3] + key_assignments[4]).to_i
     }
   end
 end

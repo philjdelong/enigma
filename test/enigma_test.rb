@@ -56,26 +56,25 @@ class EnigmaTest < Minitest::Test
 
 # key_class
   def test_it_can_generate_random_five_digit_number
-    assert_instance_of Integer, @enigma.random_five_digit_number
+    @enigma.stubs(:random_five_digit_number).returns(12345)
+    assert_equal 12345, @enigma.random_five_digit_number
   end
 
   def test_it_can_tell_us_each_key_value_for_key
-    assert_instance_of Array, @enigma.key_assignments
-    assert_equal 5, @enigma.key_assignments.count
+    @enigma.stubs(:random_five_digit_number).returns(12345)
+    expected = ["1", "2", "3", "4", "5"]
+    assert_equal expected, @enigma.key_assignments
   end
 
   def test_it_can_tell_us_key_shifts_for_key
-    # need stub for this one
+    @enigma.stubs(:random_five_digit_number).returns(12345)
     expected = {
-      a: @enigma.key_assignments[0],
-      b: @enigma.key_assignments[1],
-      c: @enigma.key_assignments[2],
-      d: @enigma.key_assignments[3]
+      :a => 12,
+      :b => 23,
+      :c => 34,
+      :d => 45
     }
-    assert_instance_of Hash, @enigma.key_shifts
-    assert_instance_of Array, @enigma.key_shifts.values
-    assert_equal [:a, :b, :c, :d], @enigma.key_shifts.keys
-    assert_equal 4, @enigma.key_shifts.length
+    assert_equal expected, @enigma.key_shifts
   end
 
 
