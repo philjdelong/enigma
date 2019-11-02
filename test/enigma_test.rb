@@ -16,7 +16,7 @@ class EnigmaTest < Minitest::Test
   end
 
 
-# for offset
+# offset_class
   def test_it_can_provide_selected_date_in_DDMMYY_format_for_offset
     assert_equal "012345", @enigma.selected_date(01,23,2045)
   end
@@ -54,7 +54,7 @@ class EnigmaTest < Minitest::Test
   end
 
 
-# key class
+# key_class
   def test_it_can_generate_random_five_digit_number
     assert_instance_of Integer, @enigma.random_five_digit_number
   end
@@ -80,11 +80,7 @@ class EnigmaTest < Minitest::Test
 
 
 
-
-
-
-
-
+# enigma_class == ENCRYPT/ DECRYPT
   def test_it_can_encrypt_a_message_with_set_key_and_date
     skip
     encrypted = {

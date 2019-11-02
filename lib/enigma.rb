@@ -10,11 +10,8 @@ class Enigma
   end
 
 
-  # key_class
-  def random_five_digit_number
-    rand.to_s[2..6].to_i
-  end
 
+# offset_class
   def todays_date
     day = @date_info.day.to_s.rjust(2, "0")
     month = @date_info.month.to_s.rjust(2, "0")
@@ -53,6 +50,13 @@ class Enigma
       c: offset_assignments(date_info)[2],
       d: offset_assignments(date_info)[3]
     }
+  end
+
+
+
+  # key_class
+  def random_five_digit_number
+    rand.to_s[2..6].to_i
   end
 
   def key_assignments
