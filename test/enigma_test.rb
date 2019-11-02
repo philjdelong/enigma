@@ -4,6 +4,8 @@ class EnigmaTest < Minitest::Test
 
   def setup
     @enigma = Enigma.new
+    @key = Key.new
+    @offset = Offset.new
   end
 
   def test_it_exists
@@ -65,64 +67,4 @@ class EnigmaTest < Minitest::Test
     }
     assert_equal encrypted, @enigma.encrypt("hello world")
   end
-
-# offset_class
-  # def test_it_can_provide_selected_date_in_DDMMYY_format_for_offset
-  #   assert_equal "012345", @enigma.selected_date(01,23,2045)
-  # end
-  #
-  # def test_it_can_provide_todays_date_in_DDMMYY_format_for_offset
-  #   # skip
-  #   assert_equal "021119", @enigma.todays_date
-  # end
-  #
-  # def test_it_can_square_the_date_for_offset
-  #   date_info = "012345"
-  #   assert_equal 152399025, @enigma.date_squared(date_info)
-  # end
-  #
-  # def test_it_can_take_last_four_digits_for_offset
-  #   date_info = "012345"
-  #   assert_equal 9025, @enigma.last_four(date_info)
-  # end
-  #
-  # def test_it_can_tell_us_each_offset_value_for_offset
-  #   date_info = "012345"
-  #   assert_equal [9, 0, 2, 5], @enigma.offset_assignments(date_info)
-  # end
-  #
-  # def test_it_can_tell_us_offset_shifts_for_offset
-  #   # skip
-  #   date_info = "012345"
-  #   expected = {
-  #     :a => 9,
-  #     :b => 0,
-  #     :c => 2,
-  #     :d => 5
-  #   }
-  #   assert_equal expected, @enigma.offset_shifts(date_info)
-  # end
-
-# key_class
-  # def test_it_can_generate_random_five_digit_number
-  #   @enigma.stubs(:random_five_digit_number).returns(12345)
-  #   assert_equal 12345, @enigma.random_five_digit_number
-  # end
-  #
-  # def test_it_can_tell_us_each_key_value_for_key
-  #   @enigma.stubs(:random_five_digit_number).returns(12345)
-  #   expected = ["1", "2", "3", "4", "5"]
-  #   assert_equal expected, @enigma.key_assignments
-  # end
-  #
-  # def test_it_can_tell_us_key_shifts_for_key
-  #   @enigma.stubs(:random_five_digit_number).returns(12345)
-  #   expected = {
-  #     :a => 12,
-  #     :b => 23,
-  #     :c => 34,
-  #     :d => 45
-  #   }
-  #   assert_equal expected, @enigma.key_shifts
-  # end
 end
