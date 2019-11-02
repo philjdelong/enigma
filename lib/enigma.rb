@@ -46,7 +46,7 @@ class Enigma
     digits
   end
 
-  def offset(date_info)
+  def offset_shifts(date_info)
     offset_info = {
       a: offset_assignments(date_info)[0],
       b: offset_assignments(date_info)[1],
@@ -56,10 +56,18 @@ class Enigma
   end
 
   def key_assignments
-    digits = @char_list.to_s.split('')
+    digits = random_five_digit_number.to_s.split('')
+    digits.map do |digit|
+      digit.to_i
+    end
   end
 
-  def key
-    #######
+  def key_shifts
+    key_info = {
+      a: key_assignments[0],
+      b: key_assignments[1],
+      c: key_assignments[2],
+      d: key_assignments[3]
+    }
   end
 end

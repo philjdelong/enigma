@@ -41,7 +41,7 @@ class EnigmaTest < Minitest::Test
     assert_equal [9, 0, 2, 5], @enigma.offset_assignments(date_info)
   end
 
-  def test_it_can_tell_us_offset_for_offset
+  def test_it_can_tell_us_offset_shifts_for_offset
     # skip
     date_info = "012345"
     expected = {
@@ -50,7 +50,7 @@ class EnigmaTest < Minitest::Test
       :c => 2,
       :d => 5
     }
-    assert_equal expected, @enigma.offset(date_info)
+    assert_equal expected, @enigma.offset_shifts(date_info)
   end
 
 
@@ -60,22 +60,22 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_tell_us_each_key_value_for_key
-    skip
-
-    assert_equal [], @enigma.key_assignments
+    assert_instance_of Array, @enigma.key_assignments
+    assert_equal 5, @enigma.key_assignments.count
   end
 
-  def test_it_can_tell_us_key_for_key
-    skip
+  def test_it_can_tell_us_key_shifts_for_key
     # need stub for this one
-    date = "012345"
     expected = {
-      :a => 01,
-      :b => 12,
-      :c => 23,
-      :d => Integer
+      a: @enigma.key_assignments[0],
+      b: @enigma.key_assignments[1],
+      c: @enigma.key_assignments[2],
+      d: @enigma.key_assignments[3]
     }
-    assert_equal expected, @enigma.key
+    assert_instance_of Hash, @enigma.key_shifts
+    assert_instance_of Array, @enigma.key_shifts.values
+    assert_equal [:a, :b, :c, :d], @enigma.key_shifts.keys
+    assert_equal 4, @enigma.key_shifts.length
   end
 
 
