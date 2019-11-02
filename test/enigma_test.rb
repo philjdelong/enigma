@@ -10,7 +10,7 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, @enigma
   end
 
-  def test_it_can_encrypt_a_message
+  def test_it_can_encrypt_a_message_with_set_key_and_date
     skip
     encrypted = {
         encryption: "keder ohulw",
@@ -20,9 +20,9 @@ class EnigmaTest < Minitest::Test
     assert_equal encrypted, @enigma.encrypt("hello world", "02715", "040895")
   end
 
-  def test_it_can_encrypt_a_message
+  def test_it_can_decrypt_a_message_with_set_key_and_date
     skip
-    encrypted = {
+    decrypted = {
         decryption: "hello world",
         key: "02715",
         date: "040895"
@@ -30,10 +30,12 @@ class EnigmaTest < Minitest::Test
     assert_equal encrypted, @enigma.decrypt("keder ohulw", "02715", "040895")
   end
 
-  def test_it_can_encrypt_a_message_with_a_key_using_todays_date
+  def test_it_can_encrypt_a_message_with_set_key_and_todays_date
     skip
     encrypted = {
-      #=> # encryption hash here
+      encryption: "encrypted_message",
+      key: "pre_established_key",
+      date: "todays_date"
     }
     assert_equal encrypted, @enigma.encrypt("hello world", "02715")
   end
@@ -41,7 +43,9 @@ class EnigmaTest < Minitest::Test
   def test_it_can_decrypt_a_message_with_a_key_unsing_todays_date
     skip
     decrypted = {
-      #=> # decryption hash here
+      decryption: "decrypted_message",
+      key: "pre_established_key",
+      date: "todays_date"
     }
     assert_equal decrypted, @enigma.decrypt(encrypted[:encryption], "02715")
   end
@@ -49,7 +53,9 @@ class EnigmaTest < Minitest::Test
   def test_it_can_encrypt_a_message_generating_random_key_using_todays_date
     skip
     encrypted = {
-      #=> # encryption hash here
+      encryption: "decrypted_message",
+      key: "random_key",
+      date: "todays_date"
     }
     assert_equal encrypted, @enigma.encrypt("hello world")
   end
