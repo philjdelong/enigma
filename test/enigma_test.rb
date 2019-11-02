@@ -18,16 +18,12 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_calculate_total_shift_for_keys_and_offsets
+    skip
     expected = []
     assert_equal expected, @enigma.total_shift(@keys, @offsets)
   end
 
-
-
-
-
-
-  # enigma_class == ENCRYPT/ DECRYPT
+# Interaction Pattern (5 tests)
   def test_it_can_encrypt_a_message_with_set_key_and_date
     skip
     encrypted = {
