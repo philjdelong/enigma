@@ -1,21 +1,20 @@
-require'./lib/keys'
-require'./lib/offsets'
+require'./lib/encryptor'
+require'./lib/decryptor'
 
 class Enigma
   attr_reader :char_list
 
   def initialize
     @char_list = ("a".."z").to_a << " "
-    @keys = Keys.new
-    @offsets = Offsets.new
+    @encryptor = Encryptor.new(message, key, date)
+    @decryptor = Decryptor.new(cyphertext, key, date)
   end
 
-  def total_shift
-    new_hash = {
-      :a => @keys.keys_shifts[:a] + @offsets.offsets_shifts[:a],
-      :b => @keys.keys_shifts[:b] + @offsets.offsets_shifts[:b],
-      :c => @keys.keys_shifts[:c] + @offsets.offsets_shifts[:c],
-      :d => @keys.keys_shifts[:d] + @offsets.offsets_shifts[:d]
-    }
+  def encrypt(message, key, date)
+    @encryptor.encrypt(message, key, date)
+  end
+
+  def decrypt(cyphertext, key, date)
+    @decryptor.decrypt(cyphertext, key, date)
   end
 end
