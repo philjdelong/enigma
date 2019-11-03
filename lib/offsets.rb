@@ -1,20 +1,21 @@
 require 'date'
 
 class Offsets
+  attr_reader :date
 
-  def initialize
-    @date_info = Time.now
+  def initialize(date = self.current_date)
+    @date = date
   end
 
-  def todays_date
-    day = @date_info.day.to_s.rjust(2, "0")
-    month = @date_info.month.to_s.rjust(2, "0")
-    year = @date_info.year.to_s.slice(2,3)
+  def current_date
+    day = Time.now.day.to_s.rjust(2, "0")
+    month = Time.now.month.to_s.rjust(2, "0")
+    year = Time.now.year.to_s.slice(2,3)
     day+month+year
   end
 
   def date_squared
-    (todays_date.to_i)**2
+    (date.to_i)**2
   end
 
   def last_four
