@@ -5,7 +5,6 @@ class Enigma
   attr_reader :char_list
 
   def initialize
-    @char_list = ("a".."z").to_a << " "
     # @encryptor = Encryptor.new(message, key, date)
     # @decryptor = Decryptor.new(cyphertext, key, date)
   end
