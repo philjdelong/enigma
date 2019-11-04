@@ -5,6 +5,17 @@ class EncryptorTest < Minitest::Test
   def setup
     @encryptor_1 = Encryptor.new("hello world", "02715", "040895")
     @key = Key.new
+    @offset = Offset.new
+  end
+
+  def test_it_can_encrypt_a_message_with_set_key_and_date
+    skip
+    encrypted = {
+        encryption: "keder ohulw",
+        key: "02715",
+        date: "040895"
+      }
+    assert_equal encrypted, @encryptor_1.encrypt("hello world", "02715", "040895")
   end
 
   def test_it_can_calculate_total_shift_for_keys_and_offsets
@@ -31,15 +42,5 @@ class EncryptorTest < Minitest::Test
 
   def test_it_can_split_letters_and_set_them_to_downcase
     assert_equal ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"], @encryptor_1.split_letters_downcase("hello world")
-  end
-
-  def test_it_can_encrypt_a_message_with_set_key_and_date
-    # skip
-    encrypted = {
-        encryption: "keder ohulw",
-        key: "02715",
-        date: "040895"
-      }
-    assert_equal encrypted, @encryptor_1.encrypt("hello world", "02715", "040895")
   end
 end

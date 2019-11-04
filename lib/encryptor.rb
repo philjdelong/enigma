@@ -8,18 +8,18 @@ class Encryptor
   attr_reader :message, :key, :offsets, :date
 
   def initialize(message, key, date = Time.now)
-    @message = Message.new(message)
+    @message = message
     @key = Key.new(key)
-    @offsets = Offsets.new(date)
-    @characters = ("a".."z").to_a << " "
+    @offset = Offset.new(date)
+    @char_list = ("a".."z").to_a << " "
   end
 
   def total_shift
     new_hash = {
-      :a => @key.key_shifts[:a] + @offsets.offsets_shifts[:a],
-      :b => @key.key_shifts[:b] + @offsets.offsets_shifts[:b],
-      :c => @key.key_shifts[:c] + @offsets.offsets_shifts[:c],
-      :d => @key.key_shifts[:d] + @offsets.offsets_shifts[:d]
+      :a => @key.key_shifts[:a] + @offset.offset_shifts[:a],
+      :b => @key.key_shifts[:b] + @offset.offset_shifts[:b],
+      :c => @key.key_shifts[:c] + @offset.offset_shifts[:c],
+      :d => @key.key_shifts[:d] + @offset.offset_shifts[:d]
     }
   end
 
@@ -59,7 +59,7 @@ class Encryptor
         new_hash[letter] = sum + 1
         sum = sum + 1
       end
-      new_hash
     end
+    new_hash
   end
 end
