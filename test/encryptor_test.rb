@@ -12,6 +12,16 @@ class EncryptorTest < Minitest::Test
     assert_instance_of Encryptor, @encryptor
   end
 
+  def test_it_can_encrypt_a_message_with_set_key_and_date
+    skip
+    encrypted = {
+        encryption: "keder ohulw",
+        key: "02715",
+        date: "040895"
+      }
+    assert_equal encrypted, @encryptor.encrypt("hello world", "02715", "040895")
+  end
+
   def test_it_can_calculate_total_shift_for_keys_and_offsets
     expected = {
       :a => 3,
@@ -34,17 +44,11 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_it_can_convert_message_to_numberic_value
-    skip
-    assert_equal ["hello"], @encryptor.let_to_num("hello world")
+    assert_equal [104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100], @encryptor.convert_to_num("hello world")
   end
 
   def test_it_can_encrypt_a_message_with_set_key_and_date
     skip
-    encrypted = {
-        encryption: "keder ohulw",
-        key: "02715",
-        date: "040895"
-      }
-    assert_equal encrypted, @encryptor.encrypt("hello world", "02715", "040895")
+    assert_equal "fun", @encryptor.message_encryption("fun")
   end
 end

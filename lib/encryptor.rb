@@ -14,6 +14,14 @@ class Encryptor
     @char_list = ("a".."z").to_a << " "
   end
 
+  def encrypt(message = self.message, key = self.key, date = self.date)
+    encrypted = {
+      :encryption => @message.message_encryption(message),
+      :key => key,
+      :date => date
+    }
+  end
+
   def total_shift
     new_hash = {
       :a => @key.key_shifts[:a] + @offset.offset_shifts[:a],
@@ -23,32 +31,15 @@ class Encryptor
     }
   end
 
-  def encrypt(message = self.message, key = self.key, date = self.date)
-    encrypted = {
-      :encryption => @message.encryption(message),
-      :key => key,
-      :date => date
-    }
-  end
-
-  def message_encription(message)
-    ## stuck
-  end
-
-  def let_to_num(message)
-    split_letters_downcase(message).map do |down_letter|
-      if letter_key.keys.include?(down_letter)
-        down_letter
-        ## stuck
-      end
-    end
-  end
-
   def split_letters_downcase(message)
     encryption = message.split('')
     encryption.map do |letter|
       letter.downcase
     end
+  end
+
+  def convert_to_num(message)
+    split_letters_downcase(message).map { |letter| letter.ord }
   end
 
   def letter_key
@@ -61,5 +52,9 @@ class Encryptor
       end
     end
     new_hash
+  end
+
+  def message_encryption(message)
+    message.length
   end
 end
