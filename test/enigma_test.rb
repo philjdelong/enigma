@@ -10,10 +10,6 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, @enigma
   end
 
-  def test_it_initializes_with_char_list_and_key
-    assert_equal 27, @enigma.char_list.count
-  end
-
 # Interaction Pattern (5 tests)
   def test_it_can_encrypt_a_message_with_set_key_and_date
     skip
