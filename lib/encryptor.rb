@@ -22,6 +22,10 @@ class Encryptor
     }
   end
 
+  def message_encryption(message)
+    ##
+  end
+
   def total_shift
     new_hash = {
       :a => @key.key_shifts[:a] + @offset.offset_shifts[:a],
@@ -38,10 +42,6 @@ class Encryptor
     end
   end
 
-  def convert_to_num(message)
-    split_letters_downcase(message).map { |letter| letter.ord }
-  end
-
   def letter_key
     sum = 0
     new_hash = {}
@@ -54,7 +54,32 @@ class Encryptor
     new_hash
   end
 
-  def message_encryption(message)
-    message.length
+  def message_to_num(message)
+    split_letters_downcase(message).map { |letter| letter.ord }
+  end
+
+  def message_to_num_plus_shift(message)
+    rotator = total_shift.values
+    shifted = message_to_num(message).map do |value|
+      if value == (' ').ord
+        rotator = rotator.rotate
+      else
+        value = (value + rotator.first)
+        rotator = rotator.rotate
+      end
+      value
+    end
+    shifted
+  end
+
+  def encryption(message)
+    x = message_to_num_plus_shift(message).map do |value|
+      letter_vals = [97..123]
+      if letter_vals.include?(value)
+        (value % 26).chr
+        value
+      end
+      x
+    end
   end
 end

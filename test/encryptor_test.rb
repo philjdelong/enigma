@@ -3,7 +3,7 @@ require_relative '../lib/test_helper'
 class EncryptorTest < Minitest::Test
 
   def setup
-    @encryptor = Encryptor.new("hello world", "02715", "040895")
+    @encryptor = Encryptor.new("hello world!", "02715", "040895")
     @key = Key.new
     @offset = Offset.new
   end
@@ -19,7 +19,12 @@ class EncryptorTest < Minitest::Test
         key: "02715",
         date: "040895"
       }
-    assert_equal encrypted, @encryptor.encrypt("hello world", "02715", "040895")
+    assert_equal encrypted, @encryptor.encrypt("hello world!", "02715", "040895")
+  end
+
+  def test_it_can_encrypt_a_message_with_set_key_and_date
+    skip
+    assert_equal "fun", @encryptor.message_encryption("fun")
   end
 
   def test_it_can_calculate_total_shift_for_keys_and_offsets
@@ -40,15 +45,21 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_it_can_split_letters_and_set_them_to_downcase
-    assert_equal ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"], @encryptor.split_letters_downcase("hello world")
+    assert_equal ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d", "!"], @encryptor.split_letters_downcase("hello world!")
   end
 
-  def test_it_can_convert_message_to_numberic_value
-    assert_equal [104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100], @encryptor.convert_to_num("hello world")
+  def test_it_can_convert_message_to_numeric_value
+    expected = [104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33]
+    assert_equal expected, @encryptor.message_to_num("hello world!")
   end
 
-  def test_it_can_encrypt_a_message_with_set_key_and_date
-    skip
-    assert_equal "fun", @encryptor.message_encryption("fun")
+  def test_it_can_add_total_shift_value_to_numeric_value
+    expected = [107, 128, 181, 128, 114, 32, 192, 131, 117, 135, 173, 33]
+    assert_equal expected, @encryptor.message_to_num_plus_shift("hello world!")
+  end
+
+  def test_it_can_convert_values_into_strings
+    expected = ["k", "f", "d", "f", "r", " ", "o", "i", "u", "m", "v", "!"]
+    assert_equal expected, @encryptor.encryption("hello world!")
   end
 end
