@@ -1,15 +1,17 @@
 require 'date'
+require './lib/message'
 require './lib/key'
-require './lib/offsets'
+require './lib/offset'
+require './lib/message'
 
 class Encryptor
   attr_reader :message, :key, :offsets, :date
 
   def initialize(message, key, date = Time.now)
-    @message = message
+    @message = Message.new(message)
     @key = Key.new(key)
     @offsets = Offsets.new(date)
-    @char_list = ("a".."z").to_a << " "
+    @characters = ("a".."z").to_a << " "
   end
 
   def total_shift
@@ -23,13 +25,26 @@ class Encryptor
 
   def encrypt(message = self.message, key = self.key, date = self.date)
     encrypted = {
-        :encryption => message_encription(message),
-        :key => key,
-        :date => date
-      }
+      :encryption => @message.encryption(message),
+      :key => key,
+      :date => date
+    }
   end
 
   def message_encription(message)
+    ## stuck
+  end
+
+  def let_to_num(message)
+    split_letters_downcase(message).map do |down_letter|
+      if letter_key.keys.include?(down_letter)
+        down_letter
+        ## stuck
+      end
+    end
+  end
+
+  def split_letters_downcase(message)
     encryption = message.split('')
     encryption.map do |letter|
       letter.downcase
@@ -44,7 +59,7 @@ class Encryptor
         new_hash[letter] = sum + 1
         sum = sum + 1
       end
+      new_hash
     end
-    new_hash
   end
 end

@@ -24,6 +24,15 @@ class EncryptorTest < Minitest::Test
     assert_equal 26, @encryptor_1.letter_key["z"]
   end
 
+  def test_it_can_convert_message_to_numberic_value
+    skip
+    assert_equal ["hello"], @encryptor_1.let_to_num("hello world")
+  end
+
+  def test_it_can_split_letters_and_set_them_to_downcase
+    assert_equal ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"], @encryptor_1.split_letters_downcase("hello world")
+  end
+
   def test_it_can_encrypt_a_message_with_set_key_and_date
     # skip
     encrypted = {
