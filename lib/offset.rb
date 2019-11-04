@@ -1,6 +1,6 @@
 require 'date'
 
-class Offsets
+class Offset
   attr_reader :date
 
   def initialize(date = self.current_date)
@@ -22,7 +22,7 @@ class Offsets
     date_squared % 10000
   end
 
-  def offsets_assignments
+  def offset_assignments
     digits = last_four.to_s.split('')
     digits = digits.map do |digit|
       digit.to_i
@@ -30,12 +30,12 @@ class Offsets
     digits
   end
 
-  def offsets_shifts
+  def offset_shifts
     offset_info = {
-      a: offsets_assignments[0],
-      b: offsets_assignments[1],
-      c: offsets_assignments[2],
-      d: offsets_assignments[3]
+      a: offset_assignments[0],
+      b: offset_assignments[1],
+      c: offset_assignments[2],
+      d: offset_assignments[3]
     }
   end
 end
