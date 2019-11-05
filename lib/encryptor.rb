@@ -1,13 +1,11 @@
 require 'date'
-require './lib/message'
 require './lib/key'
 require './lib/offset'
-require './lib/message'
 
 class Encryptor
-  attr_reader :message, :key, :offsets, :date
+  attr_reader :message, :key, :offset, :date
 
-  def initialize(message, key, date = Time.now)
+  def initialize(message, key = Key.new, date = Time.now)
     @message = message
     @key = Key.new(key)
     @offset = Offset.new(date)
@@ -38,20 +36,33 @@ class Encryptor
     end
   end
 
+  def letter_key
+    sum = 0
+    new_hash = {}
+    @char_list.map do |letter|
+      new_hash[letter] = sum + 1
+      sum = sum + 1
+    end
+  new_hash
+  end
+
   def message_to_num(message)
     split_letters_downcase(message).map do |letter|
-      letter.ord
+      if @char_list.include?(letter) == false
+        letter
+      elsif letter == (' ')
+        letter = 27
+      else
+        letter.ord - 96
+      end
     end
   end
 
-  def message_to_num_plus_shift(message)
+  def shift_message(message)
     rotator = total_shift.values
     message_to_num(message).map do |value|
-      if value > 96 && value < 124
+      if value.class == Integer
         value = (value + rotator.first)
-        rotator = rotator.rotate
-      elsif value == 32
-        value = value
         rotator = rotator.rotate
       end
       value
@@ -59,24 +70,6 @@ class Encryptor
   end
 
   def encryption(message)
-    message_to_num_plus_shift(message).map do |value|
-      if value > 96
-        value = (((value - 97) % 26) + 97).chr
-      else
-        value.chr
-      end
-    end.join
+    
   end
-
-  # def letter_key
-  #   sum = 0
-  #   new_hash = {}
-  #   @char_list.map do |letter|
-  #     if letter != ' '
-  #       new_hash[letter] = sum + 1
-  #       sum = sum + 1
-  #     end
-  #   end
-  #   new_hash
-  # end
 end
