@@ -1,9 +1,7 @@
-require 'date'
-
 class Offset_shift
   attr_reader :date
 
-  def initialize(date = current_date)
+  def initialize(date = self.current_date)
     @date = date
   end
 
