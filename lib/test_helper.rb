@@ -1,9 +1,10 @@
 require 'simplecov'
 SimpleCov.start
+require 'date'
 require 'minitest/autorun'
-require 'minitest/nyan_cat'
+require 'minitest/pride'
 require 'mocha/minitest'
 require './lib/enigma'
-require './lib/offset'
-require './lib/keys'
+require './lib/key_shift'
+require './lib/offset_shift'
 require './lib/encryptor'
