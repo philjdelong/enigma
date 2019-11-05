@@ -3,7 +3,8 @@ require'./lib/test_helper'
 class EnigmaTest < Minitest::Test
 
   def setup
-    @enigma = Enigma.new
+    @enigma = Enigma.new("hello world", "02715", "040895")
+    @encryptor = Encryptor.new("hello world")
   end
 
   def test_it_exists
@@ -12,12 +13,13 @@ class EnigmaTest < Minitest::Test
 
 # Interaction Pattern (5 tests)
   def test_it_can_encrypt_a_message_with_set_key_and_date
-    skip
+    # skip
     encrypted = {
         encryption: "keder ohulw",
         key: "02715",
         date: "040895"
       }
+      # require "pry"; binding.pry
     assert_equal encrypted, @enigma.encrypt("hello world", "02715", "040895")
   end
 

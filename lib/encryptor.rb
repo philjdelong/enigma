@@ -15,7 +15,7 @@ class Encryptor
   def encrypt(message = self.message, keys = self.keys, date = self.date)
     encrypted = {
       :encryption => encryption(message),
-      :keys => keys,
+      :key => keys,
       :date => date
     }
   end
