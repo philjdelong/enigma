@@ -1,4 +1,4 @@
-require './lib/test_helper'
+require'./lib/test_helper'
 
 class OffsetTest < Minitest::Test
 
