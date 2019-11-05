@@ -21,7 +21,7 @@ class EncryptorTest < Minitest::Test
     # skip
     encrypted = {
         encryption: "keder ohulw!",
-        keys: "02715",
+        key: "02715",
         date: "040895"
       }
     assert_equal encrypted, @encryptor.encrypt("hello world!", "02715", "040895")
