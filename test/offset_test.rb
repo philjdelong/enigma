@@ -13,11 +13,13 @@ class OffsetTest < Minitest::Test
   end
 
   def test_it_can_provide_date_in_DDMMYY_format_for_offset
+    @offset_current_date.stubs(:date).returns("031119")
     assert_equal "031119", @offset_current_date.date
     assert_equal "021119", @offset_random_date.date
   end
 
   def test_it_can_square_the_date_for_offset
+    @offset_current_date.stubs(:date_squared).returns(968392161)
     assert_equal 968392161, @offset_current_date.date_squared
     assert_equal 446012161, @offset_random_date.date_squared
   end
