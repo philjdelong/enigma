@@ -1,7 +1,7 @@
 class Key_shift
   attr_reader :key
 
-  def initialize(key = rand.to_s[2..6].to_i)
+  def initialize(key)
     @key = key
   end
 
