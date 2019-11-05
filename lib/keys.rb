@@ -1,12 +1,12 @@
 class Keys
-  attr_reader :random_number
+  attr_reader :random_number, :keys
 
-  def initialize
-    @random_number = rand.to_s[2..6].to_i
+  def initialize(keys = rand.to_s[2..6].to_i)
+    @keys = keys
   end
 
   def keys_assignments
-    digits = @random_number.to_s.split('')
+    digits = @keys.to_s.split('')
     digits.map do |digit|
       digit
     end

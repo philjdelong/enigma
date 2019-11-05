@@ -4,23 +4,10 @@ class EnigmaTest < Minitest::Test
 
   def setup
     @enigma = Enigma.new
-    @keys_shift = Keys.new
-    @offsets_shift = Offsets.new
   end
 
   def test_it_exists
     assert_instance_of Enigma, @enigma
-  end
-
-  def test_it_initializes_with_char_list_and_key
-    assert_equal 27, @enigma.char_list.count
-    assert_equal 5, @enigma.char_key.count
-  end
-
-  def test_it_can_calculate_total_shift_for_keys_and_offsets
-    skip
-    expected = []
-    assert_equal expected, @enigma.total_shift(@keys, @offsets)
   end
 
 # Interaction Pattern (5 tests)
