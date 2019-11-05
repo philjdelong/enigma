@@ -1,16 +1,16 @@
 require 'date'
 
-class Offset
+class Offset_shift
   attr_reader :date
 
-  def initialize(date = self.current_date)
+  def initialize(date = current_date)
     @date = date
   end
 
   def current_date
-    day = Time.now.day.to_s.rjust(2, "0")
-    month = Time.now.month.to_s.rjust(2, "0")
-    year = Time.now.year.to_s.slice(2,3)
+    day = Date::today.day.to_s.rjust(2, "0")
+    month = Date::today.month.to_s.rjust(2, "0")
+    year = Date::today.year.to_s.slice(2,3)
     day+month+year
   end
 
