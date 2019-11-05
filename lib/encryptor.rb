@@ -1,31 +1,31 @@
 require 'date'
-require './lib/key'
+require './lib/keys'
 require './lib/offset'
 
 class Encryptor
-  attr_reader :message, :key, :offset, :date
+  attr_reader :message, :keys, :offset, :date
 
-  def initialize(message, key = Key.new, date = Time.now)
+  def initialize(message, keys = Keys.new, date = Time.now)
     @message = message
-    @key = Key.new(key)
+    @keys = Keys.new(keys)
     @offset = Offset.new(date)
     @char_list = ("a".."z").to_a << " "
   end
 
-  def encrypt(message = self.message, key = self.key, date = self.date)
+  def encrypt(message = self.message, keys = self.keys, date = self.date)
     encrypted = {
       :encryption => encryption(message),
-      :key => key,
+      :keys => keys,
       :date => date
     }
   end
 
   def total_shift
     new_hash = {
-      :a => @key.key_shifts[:a] + @offset.offset_shifts[:a],
-      :b => @key.key_shifts[:b] + @offset.offset_shifts[:b],
-      :c => @key.key_shifts[:c] + @offset.offset_shifts[:c],
-      :d => @key.key_shifts[:d] + @offset.offset_shifts[:d]
+      :a => @keys.keys_shifts[:a] + @offset.offset_shifts[:a],
+      :b => @keys.keys_shifts[:b] + @offset.offset_shifts[:b],
+      :c => @keys.keys_shifts[:c] + @offset.offset_shifts[:c],
+      :d => @keys.keys_shifts[:d] + @offset.offset_shifts[:d]
     }
   end
 
@@ -36,7 +36,7 @@ class Encryptor
     end
   end
 
-  def letter_key
+  def letter_keys
     sum = 0
     new_hash = {}
     @char_list.map do |letter|
