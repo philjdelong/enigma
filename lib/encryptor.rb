@@ -70,6 +70,14 @@ class Encryptor
   end
 
   def encryption(message)
-    
+    shift_message(message).map do |value|
+      if value %27 == 0
+        value = (' ')
+      elsif value.class == Integer
+        value = (value %27) + 96
+      else
+        value = value
+      end.chr
+    end.join
   end
 end

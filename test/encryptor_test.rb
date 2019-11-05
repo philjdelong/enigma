@@ -4,7 +4,6 @@ class EncryptorTest < Minitest::Test
 
   def setup
     @encryptor = Encryptor.new("hello world!", "02715", "040895")
-    @key = Key.new
     @offset = Offset.new
   end
 
@@ -13,15 +12,15 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_it_initializes_with_message_key_and_date
-    skip
+    # skip
     assert_equal "hello world!", @encryptor.message
-    # require "pry"; binding.pry
+    require "pry"; binding.pry
     assert_equal "02715", @encryptor.key
     assert_equal "040895", @encryptor.date
   end
 
   def test_it_can_encrypt_a_message_with_set_key_and_date
-    skip
+    # skip
     encrypted = {
         encryption: "keder ohulw!",
         key: "02715",
@@ -63,7 +62,7 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_it_can_convert_values_into_strings
-    skip
+    # skip
     expected = "keder ohulw!"
     assert_equal expected, @encryptor.encryption("hello world!")
   end
