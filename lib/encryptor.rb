@@ -16,14 +16,10 @@ class Encryptor
 
   def encrypt(message = self.message, key = self.key, date = self.date)
     encrypted = {
-      :encryption => @message.message_encryption(message),
+      :encryption => encryption(message),
       :key => key,
       :date => date
     }
-  end
-
-  def message_encryption(message)
-    ##
   end
 
   def total_shift
@@ -42,44 +38,45 @@ class Encryptor
     end
   end
 
-  def letter_key
-    sum = 0
-    new_hash = {}
-    @char_list.map do |letter|
-      if letter != ' '
-        new_hash[letter] = sum + 1
-        sum = sum + 1
-      end
-    end
-    new_hash
-  end
-
   def message_to_num(message)
-    split_letters_downcase(message).map { |letter| letter.ord }
+    split_letters_downcase(message).map do |letter|
+      letter.ord
+    end
   end
 
   def message_to_num_plus_shift(message)
     rotator = total_shift.values
-    shifted = message_to_num(message).map do |value|
-      if value == (' ').ord
-        rotator = rotator.rotate
-      else
+    message_to_num(message).map do |value|
+      if value > 96 && value < 124
         value = (value + rotator.first)
+        rotator = rotator.rotate
+      elsif value == 32
+        value = value
         rotator = rotator.rotate
       end
       value
     end
-    shifted
   end
 
   def encryption(message)
-    x = message_to_num_plus_shift(message).map do |value|
-      letter_vals = [97..123]
-      if letter_vals.include?(value)
-        (value % 26).chr
-        value
+    message_to_num_plus_shift(message).map do |value|
+      if value > 96
+        value = (((value - 97) % 26) + 97).chr
+      else
+        value.chr
       end
-      x
-    end
+    end.join
   end
+
+  # def letter_key
+  #   sum = 0
+  #   new_hash = {}
+  #   @char_list.map do |letter|
+  #     if letter != ' '
+  #       new_hash[letter] = sum + 1
+  #       sum = sum + 1
+  #     end
+  #   end
+  #   new_hash
+  # end
 end

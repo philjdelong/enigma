@@ -13,18 +13,13 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_it_can_encrypt_a_message_with_set_key_and_date
-    skip
+    # skip
     encrypted = {
-        encryption: "keder ohulw",
+        encryption: "keder ohulw!",
         key: "02715",
         date: "040895"
       }
     assert_equal encrypted, @encryptor.encrypt("hello world!", "02715", "040895")
-  end
-
-  def test_it_can_encrypt_a_message_with_set_key_and_date
-    skip
-    assert_equal "fun", @encryptor.message_encryption("fun")
   end
 
   def test_it_can_calculate_total_shift_for_keys_and_offsets
@@ -36,12 +31,6 @@ class EncryptorTest < Minitest::Test
     }
     assert_equal expected, @encryptor.total_shift
     assert_equal [:a, :b, :c, :d], @encryptor.total_shift.keys
-  end
-
-  def test_it_can_tell_us_char_key_in_numeric_value
-    assert_equal 1, @encryptor.letter_key["a"]
-    assert_equal 13, @encryptor.letter_key["m"]
-    assert_equal 26, @encryptor.letter_key["z"]
   end
 
   def test_it_can_split_letters_and_set_them_to_downcase
@@ -59,7 +48,13 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_it_can_convert_values_into_strings
-    expected = ["k", "f", "d", "f", "r", " ", "o", "i", "u", "m", "v", "!"]
+    expected = "keder ohulw!"
     assert_equal expected, @encryptor.encryption("hello world!")
   end
+
+  # def test_it_can_tell_us_char_key_in_numeric_value
+  #   assert_equal 1, @encryptor.letter_key["a"]
+  #   assert_equal 13, @encryptor.letter_key["m"]
+  #   assert_equal 26, @encryptor.letter_key["z"]
+  # end
 end
