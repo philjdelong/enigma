@@ -1,15 +1,8 @@
 class Offset_shift
   attr_reader :date
 
-  def initialize(date = self.current_date)
+  def initialize(date)
     @date = date
-  end
-
-  def current_date
-    day = Date::today.day.to_s.rjust(2, "0")
-    month = Date::today.month.to_s.rjust(2, "0")
-    year = Date::today.year.to_s.slice(2,3)
-    day+month+year
   end
 
   def date_squared
