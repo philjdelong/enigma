@@ -1,16 +1,16 @@
 require './lib/test_helper'
 
-class Encryptor
+class Decryptor
 
-  def initialize(message, key, date)
-    @message = message
+  def initialize(cyphertext, key, date)
+    @cyphertext = cyphertext
     @shifter = Shifter.new(key, date)
     @char_list = ("a".."z").to_a << " "
   end
 
-  def split_letters_downcase(message)
-    encryption_split = message.split('')
-    encryption_split.map do |letter|
+  def split_letters_downcase(cyphertext)
+    decryption_split = cyphertext.split('')
+    decryption_split.map do |letter|
       letter.downcase
     end
   end
@@ -37,19 +37,8 @@ class Encryptor
     end
   end
 
-  def shift_message(message)
-    rotator = @shifter.total_shift.values
-    message_to_num(message).map do |value|
-      if value.class == Integer
-        value = (value + rotator.first)
-        rotator = rotator.rotate
-      end
-      value
-    end
-  end
-
-  def encryption(message)
-    shift_message(message).map do |value|
+  def decryption(message)
+    unshift_message(message).map do |value|
       if value %27 == 0
         value = (' ')
       elsif value.class == Integer
@@ -58,5 +47,16 @@ class Encryptor
         value = value
       end.chr
     end.join
+  end
+
+  def unshift_message(message)
+    rotator = @shifter.total_shift.values
+    message_to_num(message).map do |value|
+      if value.class == Integer
+        value = (value - rotator.first)
+        rotator = rotator.rotate
+      end
+      value
+    end
   end
 end
