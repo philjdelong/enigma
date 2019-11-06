@@ -9,8 +9,8 @@ class Encryptor
   end
 
   def split_letters_downcase(message)
-    encryption = message.split('')
-    encryption.map do |letter|
+    encryption_split = message.split('')
+    encryption_split.map do |letter|
       letter.downcase
     end
   end
