@@ -1,32 +1,12 @@
-require 'date'
-require './lib/keys'
-require './lib/offset'
+require './lib/test_helper'
 
 class Encryptor
-  attr_reader :message, :keys, :offset, :date
+  attr_reader :message, :key, :date
 
-  def initialize(message, keys = Keys.new, date = Time.now)
+  def initialize(message, key, date)
     @message = message
-    @keys = Keys.new(keys)
-    @offset = Offset.new(date)
+    @shifter = Shifter.new(key, date)
     @char_list = ("a".."z").to_a << " "
-  end
-
-  def encrypt(message = self.message, keys = self.keys, date = self.date)
-    encrypted = {
-      :encryption => encryption(message),
-      :key => keys,
-      :date => date
-    }
-  end
-
-  def total_shift
-    new_hash = {
-      :a => @keys.keys_shifts[:a] + @offset.offset_shifts[:a],
-      :b => @keys.keys_shifts[:b] + @offset.offset_shifts[:b],
-      :c => @keys.keys_shifts[:c] + @offset.offset_shifts[:c],
-      :d => @keys.keys_shifts[:d] + @offset.offset_shifts[:d]
-    }
   end
 
   def split_letters_downcase(message)
@@ -59,7 +39,7 @@ class Encryptor
   end
 
   def shift_message(message)
-    rotator = total_shift.values
+    rotator = @shifter.total_shift.values
     message_to_num(message).map do |value|
       if value.class == Integer
         value = (value + rotator.first)
