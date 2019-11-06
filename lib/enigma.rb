@@ -21,4 +21,13 @@ class Enigma
       :date => date
     }
   end
+
+  def decrypt(text, key = random_key, date = current_date)
+    encryptor = Decryptor.new(text, key, date)
+    {
+      :decryption => encryptor.decryption(text),
+      :key => key,
+      :date => date
+    }
+  end
 end
