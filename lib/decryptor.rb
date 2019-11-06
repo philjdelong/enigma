@@ -2,14 +2,14 @@ require './lib/test_helper'
 
 class Decryptor
 
-  def initialize(cyphertext, key, date)
-    @cyphertext = cyphertext
+  def initialize(message, key, date)
+    @message = message
     @shifter = Shifter.new(key, date)
     @char_list = ("a".."z").to_a << " "
   end
 
-  def split_letters_downcase(cyphertext)
-    decryption_split = cyphertext.split('')
+  def split_letters_downcase(message)
+    decryption_split = message.split('')
     decryption_split.map do |letter|
       letter.downcase
     end
