@@ -3,16 +3,11 @@ require'./lib/test_helper'
 class Key_shiftTest < Minitest::Test
 
   def setup
-    @key_shift = Key_shift.new(12345)
+    @key_shift = Key_shift.new("12345")
   end
 
   def test_it_exists
     assert_instance_of Key_shift, @key_shift
-  end
-
-  def test_it_can_tell_us_each_shift_value
-    expected = ["1", "2", "3", "4", "5"]
-    assert_equal expected, @key_shift.key_shift_assignments
   end
 
   def test_it_can_tell_us_key_shifts
